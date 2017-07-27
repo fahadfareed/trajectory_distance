@@ -28,15 +28,6 @@ import warnings
 __all__ = ["pdist","cdist", "sspd", "sowd_grid", "frechet", "discret_frechet", "hausdorff", "dtw", "lcss", "edr", "erp"]
 
 METRIC_DIC = {"geographical": {
-        """
-                              "cython": {"sspd": c_g_sspd,
-                                          "dtw": c_g_dtw,
-                                          "lcss": c_g_lcss,
-                                          "hausdorff":c_g_hausdorff,
-                                          "sowd_grid": c_sowd_grid,
-                                          "erp" : c_g_erp,
-                                          "edr" : c_g_edr },
-        """
                                "python": {"sspd": g_sspd,
                                           "dtw": g_dtw,
                                           "lcss": g_lcss,
@@ -45,17 +36,6 @@ METRIC_DIC = {"geographical": {
                                           "erp" : g_erp,
                                           "edr" : g_edr }},
               "euclidean": {
-              """
-                            "cython": {"sspd": c_e_sspd,
-                                       "dtw": c_e_dtw,
-                                       "lcss": c_e_lcss,
-                                       "hausdorff":c_e_hausdorff,
-                                       "discret_frechet": c_discret_frechet,
-                                       "frechet": c_frechet,
-                                       "sowd_grid": c_sowd_grid,
-                                        "erp": c_e_erp,
-                                        "edr": c_e_edr },
-            """
                             "python": {"sspd": e_sspd,
                                        "dtw": e_dtw,
                                        "lcss": e_lcss,
@@ -71,7 +51,7 @@ METRIC_DIC = {"geographical": {
 # Simple Distance #
 # #################
 
-def sspd(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
+def sspd(traj_1, traj_2, type_d = "euclidean", implementation = "python"):
     """
     Usage
     -----
@@ -129,7 +109,7 @@ def sspd(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
     return dist
 
 
-def sowd_grid(traj_1, traj_2, type_d = "euclidean", implementation = "auto", converted = None, precision=None):
+def sowd_grid(traj_1, traj_2, type_d = "euclidean", implementation = "python", converted = None, precision=None):
     """
     Usage
     -----
@@ -213,7 +193,7 @@ def sowd_grid(traj_1, traj_2, type_d = "euclidean", implementation = "auto", con
     return dist
 
 
-def frechet(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
+def frechet(traj_1, traj_2, type_d = "euclidean", implementation = "python"):
     """
     Usage
     -----
@@ -266,7 +246,7 @@ def frechet(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
     return dist
 
 
-def discret_frechet(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
+def discret_frechet(traj_1, traj_2, type_d = "euclidean", implementation = "python"):
     """
     Usage
     -----
@@ -319,7 +299,7 @@ def discret_frechet(traj_1, traj_2, type_d = "euclidean", implementation = "auto
     return dist
 
 
-def hausdorff(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
+def hausdorff(traj_1, traj_2, type_d = "euclidean", implementation = "python"):
     """
     Usage
     -----
@@ -377,7 +357,7 @@ def hausdorff(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
     return dist
 
 
-def dtw(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
+def dtw(traj_1, traj_2, type_d = "euclidean", implementation = "python"):
     """
     Usage
     -----
@@ -435,7 +415,7 @@ def dtw(traj_1, traj_2, type_d = "euclidean", implementation = "auto"):
     return dist
 
 
-def lcss(traj_1, traj_2, type_d = "euclidean", implementation = "auto", eps=200):
+def lcss(traj_1, traj_2, type_d = "euclidean", implementation = "python", eps=200):
     """
     Usage
     -----
@@ -493,7 +473,7 @@ def lcss(traj_1, traj_2, type_d = "euclidean", implementation = "auto", eps=200)
     return dist
 
 
-def edr(traj_1, traj_2, type_d = "euclidean", implementation = "auto", eps = 200):
+def edr(traj_1, traj_2, type_d = "euclidean", implementation = "python", eps = 200):
     """
     Usage
     -----
@@ -551,7 +531,7 @@ def edr(traj_1, traj_2, type_d = "euclidean", implementation = "auto", eps = 200
     return dist
 
 
-def erp(traj_1, traj_2, type_d = "euclidean", implementation = "auto", g = None):
+def erp(traj_1, traj_2, type_d = "euclidean", implementation = "python", g = None):
     """
     Usage
     -----
@@ -625,7 +605,7 @@ def erp(traj_1, traj_2, type_d = "euclidean", implementation = "auto", g = None)
 # Pairwise Distance #
 # ####################
 
-def pdist(traj_list, metric="sspd", type_d="euclidean", implementation="auto", converted = None, precision = None,
+def pdist(traj_list, metric="sspd", type_d="euclidean", implementation="python", converted = None, precision = None,
               eps= None, g = None ):
     """
     Usage
@@ -708,7 +688,7 @@ def pdist(traj_list, metric="sspd", type_d="euclidean", implementation="auto", c
     """
 
 
-    list_dim = map(lambda x: x.shape[1] if len(x.shape)>1 else 1, traj_list)
+    list_dim = list(map(lambda x: x.shape[1] if len(x.shape)>1 else 1, traj_list))
     nb_traj = len(traj_list)
     if not (len(set(list_dim)) == 1):
         raise ValueError("All trajectories must have same dimesion !")
@@ -763,7 +743,7 @@ def pdist(traj_list, metric="sspd", type_d="euclidean", implementation="auto", c
                 precision = 7
             print("Cells conversion start")
             cells_list_, _, _, _, _ =trajectory_set_grid(traj_list,precision)
-            cells_list = map(lambda x : np.array(x)[:,:2],cells_list_)
+            cells_list = list(map(lambda x : np.array(x)[:,:2],cells_list_))
             print("Cells conversion ok")
         im = 0
         for i in range(nb_traj):
@@ -812,7 +792,7 @@ def pdist(traj_list, metric="sspd", type_d="euclidean", implementation="auto", c
 #  Distance between list #
 # ########################
 
-def cdist(traj_list_1, traj_list_2, metric="sspd", type_d="euclidean", implementation="auto", converted = None, precision = None,
+def cdist(traj_list_1, traj_list_2, metric="sspd", type_d="euclidean", implementation="python", converted = None, precision = None,
           eps= None, g = None ):
     """
     Usage
@@ -895,9 +875,9 @@ def cdist(traj_list_1, traj_list_2, metric="sspd", type_d="euclidean", implement
 
     """
 
-    list_dim_1 = map(lambda x: x.shape[1], traj_list_1)
+    list_dim_1 = list(map(lambda x: x.shape[1], traj_list_1))
     nb_traj_1 = len(traj_list_1)
-    list_dim_2 = map(lambda x: x.shape[1], traj_list_2)
+    list_dim_2 = list(map(lambda x: x.shape[1], traj_list_2))
     nb_traj_2 = len(traj_list_2)
     if not (len(set(list_dim_1 + list_dim_2)) == 1):
         raise ValueError("All trajectories must have same dimesion !")
@@ -951,8 +931,8 @@ def cdist(traj_list_1, traj_list_2, metric="sspd", type_d="euclidean", implement
                       "is False. Default is 7")
                 precision = 7
             cells_list, _, _, _, _ =trajectory_set_grid(traj_list_1+traj_list_2,precision)
-            cells_list_1 =  map(lambda x : np.array(x)[:,:2],cells_list[:nb_traj_1])
-            cells_list_2 =  map(lambda x : np.array(x)[:,:2],cells_list[nb_traj_1:])
+            cells_list_1 =  list(map(lambda x : np.array(x)[:,:2],cells_list[:nb_traj_1]))
+            cells_list_2 =  list(map(lambda x : np.array(x)[:,:2],cells_list[nb_traj_1:]))
         for i in range(nb_traj_1):
             cells_list_1_i = cells_list_1[i]
             for j in range(nb_traj_2):
