@@ -1,6 +1,6 @@
 import numpy as np
-from basic_euclidean import point_to_trajectory
-from basic_geographical import point_to_path
+from .basic_euclidean import point_to_trajectory
+from .basic_geographical import point_to_path
 ###############
 ## euclidean ##
 ###############

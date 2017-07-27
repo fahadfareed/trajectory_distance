@@ -1,5 +1,5 @@
-from basic_euclidean import eucl_dist
-from basic_geographical import great_circle_distance
+from .basic_euclidean import eucl_dist
+from .basic_geographical import great_circle_distance
 
 #############
 # euclidean #
@@ -68,4 +68,3 @@ def g_lcss(t0, t1,eps):
                 C[i][j] = max(C[i][j-1], C[i-1][j])
     lcss = 1-float(C[n0][n1])/min([n0,n1])
     return lcss
-

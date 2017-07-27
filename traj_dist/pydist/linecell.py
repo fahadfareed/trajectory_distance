@@ -1,4 +1,4 @@
-import Geohash.geohash as geoh
+import geohash.geohash as geoh
 import shapely.geometry as geos
 import numpy as np
 
@@ -204,4 +204,3 @@ def trajectory_set_grid(traj_set, precision, time=False):
 def trajectory_grid(traj_0, precision):
     cells_list, lons_all, lats_all, lons_center_all, lats_center_all = trajectory_set_grid([traj_0], precision)
     return cells_list[0], lons_all, lats_all, lons_center_all, lats_center_all
-

@@ -3,7 +3,7 @@
 ## Thomas Eiter and Heikki Mannila
 ## Christian Dopler Labor fur  Expertensyteme. Technische Universitat  Wien
 
-from basic_euclidean import eucl_dist
+from .basic_euclidean import eucl_dist
 import numpy as np
 
 def _c(ca,i,j,P,Q):

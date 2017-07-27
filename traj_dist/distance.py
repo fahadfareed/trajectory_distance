@@ -1,38 +1,42 @@
-from pydist.linecell import trajectory_set_grid
+from traj_dist.pydist.linecell import trajectory_set_grid
 
-from pydist.sspd import e_sspd, g_sspd
-from pydist.dtw import e_dtw, g_dtw
-from pydist.erp import e_erp, g_erp
-from pydist.edr import e_edr, g_edr
-from pydist.lcss import e_lcss, g_lcss
-from pydist.frechet import frechet
-from pydist.discret_frechet import discret_frechet
-from pydist.hausdorff import e_hausdorff, g_hausdorff
-from pydist.sowd import sowd_grid
+from traj_dist.pydist.sspd import e_sspd, g_sspd
+from traj_dist.pydist.dtw import e_dtw, g_dtw
+from traj_dist.pydist.erp import e_erp, g_erp
+from traj_dist.pydist.edr import e_edr, g_edr
+from traj_dist.pydist.lcss import e_lcss, g_lcss
+from traj_dist.pydist.frechet import frechet
+from traj_dist.pydist.discret_frechet import discret_frechet
+from traj_dist.pydist.hausdorff import e_hausdorff, g_hausdorff
+from traj_dist.pydist.sowd import sowd_grid
 
-from cydist.sspd import c_e_sspd, c_g_sspd
-from cydist.dtw import c_e_dtw, c_g_dtw
-from cydist.erp import c_e_erp, c_g_erp
-from cydist.edr import c_e_edr, c_g_edr
-from cydist.lcss import c_e_lcss, c_g_lcss
-from cydist.hausdorff import c_e_hausdorff, c_g_hausdorff
-from cydist.discret_frechet import c_discret_frechet
-from cydist.frechet import c_frechet
-from cydist.sowd import c_sowd_grid
-
+"""
+from traj_dist.cydist.sspd import c_e_sspd, c_g_sspd
+from traj_dist.cydist.dtw import c_e_dtw, c_g_dtw
+from traj_dist.cydist.erp import c_e_erp, c_g_erp
+from traj_dist.cydist.edr import c_e_edr, c_g_edr
+from traj_dist.cydist.lcss import c_e_lcss, c_g_lcss
+from traj_dist.cydist.hausdorff import c_e_hausdorff, c_g_hausdorff
+from traj_dist.cydist.discret_frechet import c_discret_frechet
+from traj_dist.cydist.frechet import c_frechet
+from traj_dist.cydist.sowd import c_sowd_grid
+"""
 import numpy as np
 
 import warnings
 
 __all__ = ["pdist","cdist", "sspd", "sowd_grid", "frechet", "discret_frechet", "hausdorff", "dtw", "lcss", "edr", "erp"]
 
-METRIC_DIC = {"geographical": {"cython": {"sspd": c_g_sspd,
+METRIC_DIC = {"geographical": {
+        """
+                              "cython": {"sspd": c_g_sspd,
                                           "dtw": c_g_dtw,
                                           "lcss": c_g_lcss,
                                           "hausdorff":c_g_hausdorff,
                                           "sowd_grid": c_sowd_grid,
                                           "erp" : c_g_erp,
                                           "edr" : c_g_edr },
+        """
                                "python": {"sspd": g_sspd,
                                           "dtw": g_dtw,
                                           "lcss": g_lcss,
@@ -40,7 +44,9 @@ METRIC_DIC = {"geographical": {"cython": {"sspd": c_g_sspd,
                                           "sowd_grid": sowd_grid,
                                           "erp" : g_erp,
                                           "edr" : g_edr }},
-              "euclidean": {"cython": {"sspd": c_e_sspd,
+              "euclidean": {
+              """
+                            "cython": {"sspd": c_e_sspd,
                                        "dtw": c_e_dtw,
                                        "lcss": c_e_lcss,
                                        "hausdorff":c_e_hausdorff,
@@ -49,6 +55,7 @@ METRIC_DIC = {"geographical": {"cython": {"sspd": c_g_sspd,
                                        "sowd_grid": c_sowd_grid,
                                         "erp": c_e_erp,
                                         "edr": c_e_edr },
+            """
                             "python": {"sspd": e_sspd,
                                        "dtw": e_dtw,
                                        "lcss": e_lcss,

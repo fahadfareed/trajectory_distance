@@ -2,7 +2,7 @@
 ## International Journal of Computational Geometry & Applications.
 ## Vol 5, Nos 1&2 (1995) 75-91
 
-from basic_euclidean import eucl_dist, point_to_seg, circle_line_intersection
+from .basic_euclidean import eucl_dist, point_to_seg, circle_line_intersection
 
 
 def free_line(p, eps, s):

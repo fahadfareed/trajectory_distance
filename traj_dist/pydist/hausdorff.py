@@ -1,5 +1,5 @@
-from basic_euclidean import point_to_trajectory
-from basic_geographical import point_to_path
+from .basic_euclidean import point_to_trajectory
+from .basic_geographical import point_to_path
 
 #############
 # euclidean #
@@ -89,4 +89,3 @@ def g_hausdorff(t1,t2):
     """
     h=max(g_directed_hausdorff(t1,t2), g_directed_hausdorff(t2,t1))
     return h
-

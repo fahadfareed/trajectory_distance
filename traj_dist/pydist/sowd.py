@@ -1,5 +1,5 @@
 import numpy as np
-import linecell as linec
+import traj_dist.pydist.linecell as linec
 
 
 def owd_grid_brut(traj_cell_1,traj_cell_2):

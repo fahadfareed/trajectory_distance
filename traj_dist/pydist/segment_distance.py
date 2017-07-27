@@ -1,4 +1,4 @@
-from basic_euclidean import eucl_dist
+from .basic_euclidean import eucl_dist
 import math
 import numpy as np
 PI=math.pi
@@ -69,6 +69,3 @@ def segments_distance(traj_0,traj_1):
         for j in range(n1-1):
             M[i,j]=mixed_distance(traj_0[i],traj_0[i+1],traj_1[j],traj_1[j+1])
     return M
-
-
-
