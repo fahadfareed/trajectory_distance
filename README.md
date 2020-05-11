@@ -1,5 +1,4 @@
 # trajectory_distance
-=====================
 
 **trajectory_distance** is a Python module for computing distance between trajectory objects.
 It is implemented in both Python and Cython.
@@ -95,3 +94,6 @@ Proceedings  of  the  2007  ACM  SIGMOD
 international  conference  on  Management  of  data
 .      ACM,  2007,  pp.
 593–604.*
+
+## Updated
+Updated this repo to fit python3.8 and some SOTA modules
