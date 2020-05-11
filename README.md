@@ -20,9 +20,14 @@ It is implemented in both Python and Cython.
 
 ## Dependencies
 
-trajectory_distance is tested to work under Python 2.7.
+Original:
+Trajectory_distance is tested to work under Python 2.7.
 
 The required dependencies to build the software are NumPy >= 1.9.1, Cython >= 0.21.2, shapely >= 1.5.6, Geohash and a working C/C++ compiler.
+
+Updated:
+My update is tested to work under Python 3.8.
+Tested with ```NumPy==1.18.1```, ```Cython==0.29.17```, ```shapely==1.7.0```, ```python-geohash==0.8.5``` (Geohash itself is deprecated)
 
 ## Install
 
@@ -95,5 +100,5 @@ international  conference  on  Management  of  data
 .      ACM,  2007,  pp.
 593–604.*
 
-## Updated
+## Update
 Updated this repo to fit python3.8 and some SOTA modules
