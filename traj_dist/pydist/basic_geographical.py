@@ -116,7 +116,7 @@ def along_track_distance(crt, lon1, lat1, lon3, lat3):
     """
 
     d13 = great_circle_distance(lon1, lat1, lon3, lat3)
-    alt = math.acos(max(1,math.cos(d13 / R) / math.cos(crt / R))) * R
+    alt = math.acos(np.clip(math.cos(d13 / R) / math.cos(crt / R), -1.0, 1.0)) * R
     return alt
 
 
