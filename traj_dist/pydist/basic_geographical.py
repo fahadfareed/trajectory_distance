@@ -89,7 +89,7 @@ def cross_track_distance(lon1, lat1, lon2, lat2, lon3, lat3):
     theta13 = initial_bearing(lon1, lat1, lon3, lat3) # bearing from start point to third point
     theta12 = initial_bearing(lon1, lat1, lon2, lat2) # bearing from start point to end point
 
-    crt = math.asin(max(1,math.sin(d13 / R) * math.sin(theta13 - theta12))) * R
+    crt = math.asin(math.sin(d13 / R) * math.sin(theta13 - theta12)) * R
 
     return crt
 
@@ -116,7 +116,7 @@ def along_track_distance(crt, lon1, lat1, lon3, lat3):
     """
 
     d13 = great_circle_distance(lon1, lat1, lon3, lat3)
-    alt = math.acos(round(math.cos(d13 / R) / math.cos(crt / R),8)) * R
+    alt = math.acos(max(1,math.cos(d13 / R) / math.cos(crt / R))) * R
     return alt
 
 
