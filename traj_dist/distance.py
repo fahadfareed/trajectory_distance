@@ -1,3 +1,5 @@
+import pyximport; pyximport.install()
+
 from traj_dist.pydist.linecell import trajectory_set_grid
 
 from traj_dist.pydist.sspd import e_sspd, g_sspd
@@ -10,7 +12,7 @@ from traj_dist.pydist.discret_frechet import discret_frechet
 from traj_dist.pydist.hausdorff import e_hausdorff, g_hausdorff
 from traj_dist.pydist.sowd import sowd_grid
 
-"""
+
 from traj_dist.cydist.sspd import c_e_sspd, c_g_sspd
 from traj_dist.cydist.dtw import c_e_dtw, c_g_dtw
 from traj_dist.cydist.erp import c_e_erp, c_g_erp
@@ -20,7 +22,7 @@ from traj_dist.cydist.hausdorff import c_e_hausdorff, c_g_hausdorff
 from traj_dist.cydist.discret_frechet import c_discret_frechet
 from traj_dist.cydist.frechet import c_frechet
 from traj_dist.cydist.sowd import c_sowd_grid
-"""
+
 import numpy as np
 
 import warnings
@@ -34,7 +36,14 @@ METRIC_DIC = {"geographical": {
                                           "hausdorff":g_hausdorff,
                                           "sowd_grid": sowd_grid,
                                           "erp" : g_erp,
-                                          "edr" : g_edr }},
+                                          "edr" : g_edr },
+                                "cython": {"sspd": c_g_sspd,
+                                          "dtw": c_g_dtw,
+                                          "lcss": c_g_lcss,
+                                          "hausdorff":c_g_hausdorff,
+                                          "sowd_grid": c_sowd_grid,
+                                          "erp" : c_g_erp,
+                                          "edr" : c_g_edr}},
               "euclidean": {
                             "python": {"sspd": e_sspd,
                                        "dtw": e_dtw,
@@ -44,7 +53,16 @@ METRIC_DIC = {"geographical": {
                                        "frechet": frechet,
                                        "sowd_grid":sowd_grid,
                                        "erp" : e_erp,
-                                       "edr" : e_edr }}}
+                                       "edr" : e_edr },
+                            "cython": {"sspd": c_e_sspd,
+                                       "dtw": c_e_dtw,
+                                       "lcss": c_e_lcss,
+                                       "hausdorff": c_e_hausdorff,
+                                       "discret_frechet": c_discret_frechet,
+                                       "frechet": c_frechet,
+                                       "sowd_grid":c_sowd_grid,
+                                       "erp" : c_e_erp,
+                                       "edr" : c_e_edr }}}
 
 
 # #################
@@ -782,6 +800,7 @@ def pdist(traj_list, metric="sspd", type_d="euclidean", implementation="python",
         im=0
         for i in range(nb_traj):
             traj_list_i = traj_list[i]
+            print(i)
             for j in range(i + 1, nb_traj):
                 traj_list_j = traj_list[j]
                 M[im] = dist(traj_list_i, traj_list_j)
